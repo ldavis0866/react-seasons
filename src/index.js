@@ -1,12 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// const App = () => {
+//   window.navigator.geolocation.getCurrentPosition(
+//     position => console.log(position),
+//     err => console.log(err)
+//   );
+//   return <div>Latitude:</div>;
+// };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+// App component is borrowing funcionality from the React Component base class
+class App extends React.Component {
+    // constructor function from JS - it is the first function called when an instance of the calls in created. When we use constructor function we are overridding the constructor funcion associated with the React.Component class
+    constructor(props) {
+        // super function is required with props passed in - super is a reference to the parent constructor function in React.Component
+        super(props);
+
+        // this is our state object
+        this.state = { lat: null };
+
+    }
+
+    // React requires render function/method
+    render() {
+        window.navigator.geolocation.getCurrentPosition(
+        position => console.log(position),
+        err => console.log(err)
+    );
+
+        return <div>Latitude:
+
+        </div>;
+    }
+}
+
+ReactDOM.render(<App />, document.querySelector("#root"));
+
+// developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
