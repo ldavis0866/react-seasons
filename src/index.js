@@ -17,22 +17,40 @@ class App extends React.Component {
         // super function is required with props passed in - super is a reference to the parent constructor function in React.Component
         super(props);
 
-        // this is our state object
-        this.state = { lat: null };
+        // this is our state object - this.state is a special property from React.Component
+        this.state = { lat: null, errorMessage: '' };
 
+        // call back function
         window.navigator.geolocation.getCurrentPosition(
             position => {
                 // setState is a function from React.Component class
                 this.setState({ lat: position.coords.latitude });
             },
-            err => console.log(err)
+            err => {
+                this.setState({ errorMessage: err.message });
+            }
         );
 
     }
 
     // React requires render function/method
-    render() {
-        return <div>Latitude: {this.state.lat}</div>;
+    render() { 
+            // <div>
+            //     Latitude: {this.state.lat}
+            //     <br />
+            //     Error: {this.state.errorMessage}
+            // </div>
+        
+        // conditional rendering
+        if  (this.state.errorMessage && !this.state.lat) {
+            return <div>Error: {this.state.errorMessage}</div>
+        }
+
+        if (!this.state.errorMessage && this.state.lat) {
+            return <div>Latitude: {this.state.lat}</div>
+        }
+
+        return <div>Loading!</div>;
     }
 }
 
