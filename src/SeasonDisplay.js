@@ -1,9 +1,9 @@
-import React from 'react';
+// import React from 'react';
 
-const SeasonDisplay = () => {
-    return (
-        <div>Season Display</div>
-    );
-};
+// const SeasonDisplay = () => {
+//     return (
+//         <div>Season Display</div>
+//     );
+// };
 
-export default SeasonDisplay;
+// export default SeasonDisplay;
